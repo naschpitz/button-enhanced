@@ -1,6 +1,5 @@
-import React from 'react'
-import styles from './styles.module.css'
+import ButtonEnhanced from './buttonEnhanced/buttonEnhanced.jsx';
+import Confirmation from './confirmation/confirmation.jsx';
 
-export const ExampleComponent = ({ text }) => {
-  return <div className={styles.test}>Example Component: {text}</div>
-}
+export default ButtonEnhanced;
+export {Confirmation};
