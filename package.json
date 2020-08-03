@@ -1,6 +1,6 @@
 {
   "name": "@naschpitz/button-enhanced",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A button using React.js and Bootstrap 4 that will display a click confirmation pop-up.",
   "author": "Bruno Naschpitz",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "url": "https://github.com/naschpitz/button-enhanced.git"
   },
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/"
   },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
