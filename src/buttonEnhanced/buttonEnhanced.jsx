@@ -32,12 +32,13 @@ export default class ButtonEnhanced extends Component {
         this.onDone = this.onDone.bind(this);
 
         this.state = {
-            isOpen: false
+          isOpen: false
         };
     }
 
     onClick() {
-        this.setState({isOpen: true});
+        if (this.props.confirmationOptions)
+          this.setState({isOpen: true});
 
         const data = this.props.buttonOptions.data;
         const onClick = this.props.buttonOptions.onClick;
@@ -47,7 +48,8 @@ export default class ButtonEnhanced extends Component {
     }
 
     onDone(result) {
-        this.setState({isOpen: false});
+        if (this.props.confirmationOptions)
+            this.setState({isOpen: false});
 
         const data = this.props.buttonOptions.data;
         const onDone = this.props.confirmationOptions.onDone;
