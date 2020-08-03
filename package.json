@@ -1,6 +1,6 @@
 {
   "name": "@naschpitz/button-enhanced",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "A button using React.js and Bootstrap 4 that will display a click confirmation pop-up.",
   "author": "Bruno Naschpitz",
   "license": "MIT",
@@ -29,7 +29,7 @@
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
   },
-  "dependencies": {
+  "peerDependencies": {
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
     "lodash": "^4.17.15",
