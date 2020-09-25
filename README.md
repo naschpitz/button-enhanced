@@ -16,7 +16,7 @@ npm install --save @naschpitz/button-enhanced
 import React, {useState} from 'react';
 import _ from 'lodash'
 
-import ButtonEnhanced from '@naschpitz/button-enhanced';
+import { ButtonEnhanced } from '@naschpitz/button-enhanced';
 import '@naschpitz/button-enhanced/dist/index.css';
 
 const App = () => {
