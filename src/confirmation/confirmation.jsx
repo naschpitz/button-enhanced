@@ -41,7 +41,7 @@ export default class Confirmation extends Component {
                                                 isAction: this.state.isConfirming,
                                                 regularText: this.props.confirmButtonText,
                                                 actionText: this.props.confirmButtonActionText,
-                                                className: "btn btn-success btn-block btn-sm",
+                                                className: "btn btn-success btn-block " + this.props.className,
                                                 type: "button",
                                                 onClick: this.onConfirmClick}}
                 />
@@ -50,7 +50,7 @@ export default class Confirmation extends Component {
                                                 isAction: this.state.isCanceling,
                                                 regularText: this.props.cancelButtonText,
                                                 actionText: this.props.cancelButtonActionText,
-                                                className: "btn btn-danger btn-block btn-sm",
+                                                className: "btn btn-danger btn-block " + this.props.className,
                                                 type: "button",
                                                 onClick: this.onCancelClick}}
                 />
