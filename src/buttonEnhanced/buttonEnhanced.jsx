@@ -1,98 +1,96 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import _ from 'lodash';
+import React, { Component } from "react"
+import PropTypes from "prop-types"
+import Modal from "react-modal"
+import _ from "lodash"
 
-import Confirmation from '../confirmation/confirmation.jsx';
-import Modal from 'react-modal';
+import Confirmation from "../confirmation/confirmation.jsx"
 
-import './buttonEnhanced.css';
+import "./buttonEnhanced.css"
 
 const defaultStyle = {
-    content: {
-        top        : '50%',
-        left       : '50%',
-        right      : 'auto',
-        bottom     : 'auto',
-        maxHeight  : '85vh',
-        width      : '300px',
-        marginRight: '-50%',
-        transform  : 'translate(-50%, -50%)',
-        boxShadow  : '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
-    },
-    overlay: {
-        zIndex: 10
-    }
-};
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    maxHeight: "85vh",
+    width: "300px",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+  },
+  overlay: {
+    zIndex: 10,
+  },
+}
 
 export default class ButtonEnhanced extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props)
 
-        this.onClick = this.onClick.bind(this);
-        this.onDone = this.onDone.bind(this);
+    this.onClick = this.onClick.bind(this)
+    this.onDone = this.onDone.bind(this)
 
-        this.state = {
-          isOpen: false
-        };
+    this.state = {
+      isOpen: false,
     }
+  }
 
-    onClick() {
-        if (this.props.confirmationOptions)
-          this.setState({isOpen: true});
+  onClick() {
+    if (this.props.confirmationOptions) this.setState({ isOpen: true })
 
-        const data = this.props.buttonOptions.data;
-        const onClick = this.props.buttonOptions.onClick;
+    const data = this.props.buttonOptions.data
+    const onClick = this.props.buttonOptions.onClick
 
-        if (onClick)
-            onClick(data);
-    }
+    if (onClick) onClick(data)
+  }
 
-    onDone(result) {
-        if (this.props.confirmationOptions)
-            this.setState({isOpen: false});
+  onDone(result) {
+    if (this.props.confirmationOptions) this.setState({ isOpen: false })
 
-        const data = this.props.buttonOptions.data;
-        const onDone = this.props.confirmationOptions.onDone;
+    const data = this.props.buttonOptions.data
+    const onDone = this.props.confirmationOptions.onDone
 
-        if (onDone)
-            onDone(result, data);
-    }
+    if (onDone) onDone(result, data)
+  }
 
-    render()
-    {
-        let buttonOptions = _.clone(this.props.buttonOptions);
+  render() {
+    let buttonOptions = _.clone(this.props.buttonOptions)
 
-        const {isAction, actionText, regularText, ...buttonProperties} = buttonOptions;
+    const { isAction, actionText, regularText, ...buttonProperties } = buttonOptions
 
-        buttonProperties.className += buttonOptions.isAction ? " disabled" : "";
-        buttonProperties.className += buttonOptions.disabled ? " disabled" : "";
+    buttonProperties.className += buttonOptions.isAction ? " disabled" : ""
+    buttonProperties.className += buttonOptions.disabled ? " disabled" : ""
 
-        buttonProperties.onClick = this.onClick;
+    buttonProperties.onClick = this.onClick
 
-        let confirmationOptions = _.clone(this.props.confirmationOptions);
+    let confirmationOptions = _.clone(this.props.confirmationOptions)
 
-        if (confirmationOptions)
-            confirmationOptions.onDone = this.onDone;
+    if (confirmationOptions) confirmationOptions.onDone = this.onDone
 
-        return (
-            <React.Fragment>
-                <button {...buttonProperties}>
-                    {isAction ?
-                        <div><div className="loaderSpinner loader-small"/> {actionText}</div> :
-                        <div>{regularText}</div>
-                    }
-                    {this.props.children}
-                </button>
+    return (
+      <React.Fragment>
+        <button {...buttonProperties}>
+          {isAction ? (
+            <div>
+              <div className="loaderSpinner loader-small" />
+              {actionText}
+            </div>
+          ) : (
+            <div>{regularText}</div>
+          )}
+          {this.props.children}
+        </button>
 
-                <Modal isOpen={this.state.isOpen} style={defaultStyle}>
-                    <Confirmation {...confirmationOptions}/>
-                </Modal>
-            </React.Fragment>
-        );
-    }
+        <Modal isOpen={this.state.isOpen} ariaHideApp={false} style={defaultStyle}>
+          <Confirmation {...confirmationOptions} />
+        </Modal>
+      </React.Fragment>
+    )
+  }
 }
 
 ButtonEnhanced.propTypes = {
-    confirmationOptions: PropTypes.object,
-    buttonOptions: PropTypes.object,
-};
+  confirmationOptions: PropTypes.object,
+  buttonOptions: PropTypes.object,
+}
